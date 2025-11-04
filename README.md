@@ -10,7 +10,7 @@ Primeiro crie um arquivo .env seguindo o modelo:
 DB_USER=postgres
 DB_HOST=localhost
 DB_DATABASE=drones_db
-DB_PASSWORD=droneflamejante
+DB_PASSWORD=sua_senha_aqui
 DB_PORT=5432
 ```
 
