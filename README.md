@@ -4,6 +4,16 @@ Aplicação para gerenciar drones.
 
 ## Macaco para rodar:
 
+Primeiro crie um arquivo .env seguindo o modelo:
+```text
+# configuracao do banco de dados
+DB_USER=postgres
+DB_HOST=localhost
+DB_DATABASE=drones_db
+DB_PASSWORD=droneflamejante
+DB_PORT=5432
+```
+
 Rodar o backend (Node.js)
 ```bash
 cd backend
