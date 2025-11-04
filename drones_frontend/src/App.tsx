@@ -42,8 +42,24 @@ function App() {
       <h1>Gerenciador de Drones</h1>
 
       <h2>Adicionar Novo Drone</h2>
-      <DroneForm onAddDrone={(drone) => {
-        setDrones([...drones, { id: drones.length + 1, ...drone }]);
+      <DroneForm onAddDrone={async (drone) => {
+        try {
+          const response = await fetch("http://localhost:3000/drones", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(drone),
+          });
+
+          if (!response.ok) throw new Error("Erro ao adicionar drone");
+
+          const novoDrone = await response.json();
+          setDrones([...drones, novoDrone]);
+        } catch (error) {
+          alert("Erro ao adicionar drone!");
+          console.error(error);
+        }
       }} />
       
       <hr />

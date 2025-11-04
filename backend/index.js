@@ -1,6 +1,9 @@
+require('dotenv').config();
+
 const cors = require('cors');
 const express = require('express');
 const { Pool } = require('pg');
+
 
 const app = express();
 const port = 3000;
@@ -9,16 +12,11 @@ app.use(cors()); // qualquer origem pode acessar a API
 app.use(express.json()); // trata requisições com JSON
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'drones_db',
-    password: 'droneflamejante', // adicionar um .ENV para isso no futuro
-    port: 5432,
-});
-
-// get na rota raiz
-app.get('/', (req, res) => {
-  res.send('Seja bem-vindo ao Gerenciador de Drones!');
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: parseInt(process.env.DB_PORT || 5432), // 5432 é a porta padrão
 });
 
 app.get('/drones', async (req, res) => {
